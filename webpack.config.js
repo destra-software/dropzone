@@ -40,6 +40,7 @@ let getJsConfig = (minimize) => {
     },
     output: {
       libraryTarget: "umd",
+      globalObject: `typeof self !== 'undefined' ? self : this`,
       path: path.resolve(__dirname, minimize ? "dist/min" : "dist"),
       filename: minimize ? "dropzone.min.js" : "dropzone.js",
     },
