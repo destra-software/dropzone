@@ -693,8 +693,8 @@ export default class Dropzone extends Emitter {
   _addFilesFromDirectory(directory, path) {
     let dirReader = directory.createReader();
 
-    let errorHandler = (error) =>
-      __guardMethod__(console, "log", (o) => o.log(error));
+    let errorHandler = (error) => {};
+      //__guardMethod__(console, "log", (o) => o.log(error));
 
     var readEntries = () => {
       return dirReader.readEntries((entries) => {
@@ -1651,7 +1651,7 @@ export default class Dropzone extends Emitter {
         this._uploadData(files, [chunk.dataBlock]);
         return;
       } else {
-        console.warn("Retried this chunk too often. Giving up.");
+        //console.warn("Retried this chunk too often. Giving up.");
       }
     }
 
@@ -1665,9 +1665,11 @@ export default class Dropzone extends Emitter {
 
   submitRequest(xhr, formData, files) {
     if (xhr.readyState != 1) {
+      /*
       console.warn(
         "Cannot send this request because the XMLHttpRequest.readyState is not OPENED."
       );
+      */
       return;
     }
     if (this.options.binaryBody) {
@@ -2209,9 +2211,11 @@ class ExifRestore {
     // remove all characters that are not A-Z, a-z, 0-9, +, /, or =
     let base64test = /[^A-Za-z0-9\+\/\=]/g;
     if (base64test.exec(input)) {
+      /*
       console.warn(
         "There were invalid base64 characters in the input text.\nValid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\nExpect errors in decoding."
       );
+      */
     }
     input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
     while (true) {
